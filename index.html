@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equipv="X-UA-Compatible" content="ie-edge">
+        <title> Little Christmas </title>
+ 
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap" rel="stylesheet">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+ 
+       <link rel="shortcut icon" type="image/png" href="C:\Users\Thanh Van\.vscode\Little Christmas\image\favicon.png">
+
+       
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+ 
+        body{
+            line-height: 2;
+            height: 100vh;
+            overflow:hidden;
+            background-color: #cc9764;
+           
+ 
+        }
+ 
+       
+ 
+        .slider {
+           margin: 0 auto;
+           overflow: hidden;
+           justify-content:center;
+           width:60%;
+           z-index:1;
+ 
+           
+       }
+ 
+       .slider_imgs {
+           display: flex;
+           z-index:1;
+           
+       }
+ 
+       .slider_imgs img {
+           width:100%;
+           border:20px ridge #30360f;
+           z-index:1;
+       }
+ 
+       .slider_imgs input{
+           display: none;
+           z-index:1;
+       }
+ 
+       .labelslider {
+           display:flex;
+           justify-content: center;
+           z-index:1;
+       }
+ 
+       .labelslider label {
+           border: 3px solid #cb401b;
+           border-radius: 50%;
+           width: 30px;
+           height: 30px;
+           margin-left:2px;
+           margin-right:2px;
+           margin-bottom:2px;
+           margin-top: 10px;
+           z-index:1;
+       }
+ 
+ 
+        .labelslider label:hover{
+            background: #30360f;
+        }
+ 
+        #img1:checked ~.imgslider1 {
+           margin-left: -100%;
+           
+       }
+ 
+       #img2:checked~.imgslider1 {
+           margin-left:-200%;
+           
+       }
+ 
+       #img3:checked~.imgslider3 {
+           margin-left:-300%;
+           
+       }
+ 
+       #img4:checked~.imgslider4 {
+           margin-left:-400%;
+           
+       }
+ 
+       #img5:checked~.imgslider5 {
+           margin-left:-500%;
+           
+       }
+ 
+       #img6:checked~.imgslider6 {
+           margin-left:-600%;
+           
+       }
+ 
+       #img7:checked~.imgslider7 {
+           margin-left:-700;
+       }
+ 
+ 
+        .container{
+            width:100%;
+            height:100%;
+            overflow-y:scroll;
+            scroll-behavior:smooth;
+            scroll-snap-type:y mandatory;
+ 
+        }
+ 
+        .navbar{
+            position:fixed;
+            top:0;
+            z-index:1;
+            display:flex;
+            width:100%;
+            height:60px;
+            background:rgba(147,79,40,0.7);
+        }
+ 
+        .navbar ul{
+            display:flex;
+            list-style:none;
+            width:100%;
+            justify-content:center;
+            z-index:1;
+        }
+ 
+        .navbar ul li{
+            margin:0 1rem;
+            padding:1rem;
+            z-index:1;
+        }
+ 
+        .navbar ul li a{
+          text-decoration:none;  
+          text-transform: uppercase;
+          color: #e7ddd2;
+          font-weight: bold ;
+          z-index:1;
+        }
+ 
+        .navbar ul li a:hover{
+           color:#30360f;
+           z-index:1;
+        }
+ 
+        section{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            justify-content:center;
+            width:100%;
+            height:100vh;
+            scroll-snap-align:center;
+        }
+ 
+        section h1{
+            font-size:8.5vw;
+            font-family: 'Lobster Two', cursive;
+            color: #cb401b;
+            text-shadow: 5px 5px 6px #30360f;
+        }
+ 
+        section p{
+           font-size:2.5vw;
+           font-family: 'Open Sans', sans-serif;
+           color: #e7ddd2;
+           font-weight: bold;
+           font-style: italic;
+           background: #934f28;
+           width:100%;
+        }
+ 
+        section#home{
+          background:url(https://upload.wikimedia.org/wikipedia/commons/b/bd/Decorative_Christmas_village_2.JPG) no-repeat center center/cover;
+          opacity:0.9;
+        }
+ 
+ 
+        section#movies{
+          background:url(https://upload.wikimedia.org/wikipedia/commons/a/ab/Orpheum_Theatre_Vancouver_View_Of_Stage.jpg) no-repeat center center/cover;
+          opacity: 0.8;
+        }
+ 
+        section#music{
+            background:url(https://silvertonchristmasmarket.com/wp-content/uploads/2018/09/pareve-christmas.jpg) no-repeat center center/cover;
+            opacity: 0.8;
+        }
+ 
+        section#music #playlist {
+            box-sizing:border-box;
+            width:60%;
+            height:60%;
+           
+        }
+ 
+        section#music h1{
+            font-size:4vw;
+            font-family: 'Lobster Two', cursive;
+            color: #cb401b;
+            text-shadow: 5px 5px 6px #30360f;
+        }
+       
+        section#restaurants-slider{
+            user-select: none;
+        }
+ 
+        [type=radio]{
+            display:none;
+        }
+ 
+        #restaurants-slider {
+  height: 100vh;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+ 
+}
+ 
+#restaurants-slider label {
+  margin:auto;
+  width: 60%;
+  height: 35vw;
+  border-radius: 4px;
+  position: absolute;
+  left: 0; right: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  background-color:#30360f;
+ 
+}
+ 
+#s1:checked ~ #slide4, #s2:checked ~ #slide5,
+#s3:checked ~ #slide1, #s4:checked ~ #slide2,
+#s5:checked ~ #slide3 {
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
+  transform: translate3d(-30%,0,-200px);
+}
+ 
+#s1:checked ~ #slide5, #s2:checked ~ #slide1,
+#s3:checked ~ #slide2, #s4:checked ~ #slide3,
+#s5:checked ~ #slide4 {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+  transform: translate3d(-15%,0,-100px);
+}
+ 
+#s1:checked ~ #slide1, #s2:checked ~ #slide2,
+#s3:checked ~ #slide3, #s4:checked ~ #slide4,
+#s5:checked ~ #slide5 {
+  box-shadow: 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+  transform: translate3d(0,0,0);
+}
+ 
+#s1:checked ~ #slide2, #s2:checked ~ #slide3,
+#s3:checked ~ #slide4, #s4:checked ~ #slide5,
+#s5:checked ~ #slide1 {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+  transform: translate3d(15%,0,-100px);
+}
+ 
+#s1:checked ~ #slide3, #s2:checked ~ #slide4,
+#s3:checked ~ #slide5, #s4:checked ~ #slide1,
+#s5:checked ~ #slide2 {
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
+  transform: translate3d(30%,0,-200px);
+}
+ 
+     
+       
+    </style>
+    </head>
+ 
+    <body>
+        <div class="container">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home"> Home </a></li>
+                    <li><a href="#movies"> Movies </a></li>
+                    <li><a href="#music"> Music </a></li>
+                    <li><a href="#restaurants-slider"> Restaurants </a></li>
+                </ul>
+            </nav>
+ 
+            <section id="home">
+                <audio controls autoplay>
+                    <source src="file:///C:/Users/Thanh%20Van/Downloads/JingleBellsBeatInstrumental-V.A-3684889%20(mp3cut.net).mp3" type="audio/mpeg">
+ 
+                </audio>
+                <h1> Little Christmas </h1>
+                <p> Helps you enjoy your Christmas Eve to the fullest </p>
+            </section>
+ 
+            <section id="movies">
+               
+ 
+                <div class="slider">
+                    <div class="slider_imgs">
+                        <input type="radio" name="inputslider" id="img1">
+                        <input type="radio" name="inputslider" id="img2">
+                        <input type="radio" name="inputslider" id="img3">
+                        <input type="radio" name="inputslider" id="img4">
+                        <input type="radio" name="inputslider" id="img5">
+                        <input type="radio" name="inputslider" id="img6">
+                        <input type="radio" name="inputslider" id="img7">
+                       
+                        <img class="imgslider1" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px).png" alt="img1">
+                        <img class="imgslider2" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (6).png" alt="img2">
+                        <img class="imgslider3" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (5).png" alt="img3">
+                        <img class="imgslider4" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (4).png" alt="img4">
+                        <img class="imgslider5" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (3).png" alt="img5">
+                        <img class="imgslider6" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (2).png" alt="img6">
+                        <img class="imgslider7" src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Red Movie Review Illustration Instagram Post (1400 x 900 px) (1).png" alt="img7">
+ 
+                       
+                    </div>
+ 
+                     
+                     <div class="labelslider">
+                        <label for="img1"></label>
+                        <label for="img2"></label>
+                        <label for="img3"></label>
+                        <label for="img4"></label>
+                        <label for="img5"></label>
+                        <label for="img6"></label>
+                        <label for="img7"></label>
+                    </div>
+ 
+               
+ 
+                 </div>
+            </section>
+ 
+            <section id="music">
+                <h1> A playlist for a joyful Christmas </h1>
+                <iframe id="playlist" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0Yxoavh5qJV?utm_source=generator"  frameBorder="0"  allowfullscreen allow="autoplay"; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+               
+            </section>
+           
+            <section id="restaurants-slider">
+                <input type="radio" name="slider" id="s1">
+                <input type="radio" name="slider" id="s2">
+                <input type="radio" name="slider" id="s3" checked>
+                <input type="radio" name="slider" id="s4">
+                <input type="radio" name="slider" id="s5">
+                <label for="s1" id="slide1">
+                    <img src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Minimalist Restaurant Customer Food Review.png" height="100%" width="100%">
+                </label>
+                <label for="s2" id="slide2">
+                          <img src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Minimalist Restaurant Customer Food Review (4).png" height="100%" width="100%">
+                </label>
+                <label for="s3" id="slide3">
+                          <img src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Minimalist Restaurant Customer Food Review (3).png" height="100%" width="100%">
+                </label>
+                <label for="s4" id="slide4">
+                          <img src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Minimalist Restaurant Customer Food Review (2).png" height="100%" width="100%">
+                </label>
+                <label for="s5" id="slide5">
+                          <img src="C:\Users\Thanh Van\.vscode\Little Christmas\image\Minimalist Restaurant Customer Food Review (1).png" height="100%" width="100%">
+                </label>
+            </section>
+         
+ 
+           
+        </div>
+    </body>
+</html>
+
